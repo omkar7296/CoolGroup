@@ -12,15 +12,17 @@ public class Post {
     public String desc;
    // public String image;
     public boolean liked;
+    public String audio_path;
     public int audio_id;
 
-    public Post(String name, String location, String profile_pic, String desc,int audio_id) {
+    public Post(String name, String location, String profile_pic, String desc,String audio_path,int audio_id) {
         this.name = name;
         this.location = location;
         this.profile_pic = profile_pic;
         this.desc = desc;
         //this.image = image;
         this.liked = false;
+        this.audio_path = audio_path;
         this.audio_id = audio_id;
     }
 
@@ -45,7 +47,9 @@ public class Post {
         return liked;
     }
 
-    public int getAudio_id() {
-        return audio_id;
+    public String getAudio_path() {
+        return audio_path;
     }
+
+    public int getAudio_id() { return audio_id;}
 }

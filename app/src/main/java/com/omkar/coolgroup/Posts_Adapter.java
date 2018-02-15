@@ -17,6 +17,7 @@ import android.widget.SeekBar;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -55,9 +56,32 @@ public class Posts_Adapter extends RecyclerView.Adapter<Posts_Holder> {
         holder.location.setText(post.location);
         holder.desc.setText(post.desc);
 
-        final MediaPlayer mediaPlayer = MediaPlayer.create(context, posts.get(position).getAudio_id());
-        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        final MediaPlayer mediaPlayer;
+        MediaPlayer inter_media_player = new MediaPlayer();
 
+        if(posts.get(position).getAudio_path() == "")
+        {
+            final MediaPlayer mediaPlayer1;
+            mediaPlayer1 = MediaPlayer.create(context, posts.get(position).getAudio_id());
+            inter_media_player = mediaPlayer1;
+        }
+        else {
+            try {
+                //mediaPlayer = new MediaPlayer();
+                final MediaPlayer mediaPlayer1 = new MediaPlayer();
+                mediaPlayer1.setDataSource(posts.get(position).getAudio_path());
+                mediaPlayer1.prepare();
+                inter_media_player = mediaPlayer1;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+        //final MediaPlayer mediaPlayer = MediaPlayer.create(context, posts.get(position).getAudio_id());
+        //mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+
+        mediaPlayer = inter_media_player;
 
         mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
