@@ -35,8 +35,12 @@ public class MainActivity extends AppCompatActivity {
 
     ArrayList<Post> posts = new ArrayList<>();
      MediaRecorder mediaRecorder;
-     String AudioSavePathInDevice =  Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + "String1" +
-             "AudioRecording.3gp";;
+     //String AudioSavePathInDevice =  Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + "String1" +
+       //      "AudioRecording.3gp";
+
+    int count = 1;
+    String AudioSavePathInDevice = "";
+
     public static final int RequestPermissionCode = 1;
     MediaPlayer mediaPlayer;
 
@@ -70,10 +74,10 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
-        Picasso.with(getApplicationContext()).load("https://avatarfiles.alphacoders.com/717/71761.jpg")
-                .fit()
-                .centerCrop()
-                .into(profile_pic_header);
+//        Picasso.with(getApplicationContext()).load("https://avatarfiles.alphacoders.com/717/71761.jpg")
+//                .fit()
+//                .centerCrop()
+//                .into(profile_pic_header);
 
 //        description.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -91,9 +95,10 @@ public class MainActivity extends AppCompatActivity {
 
                 if(checkPermission()) {
 
-                    //AudioSavePathInDevice =
-                           // Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + "String1" +
-                              //      "AudioRecording.3gp";
+                    AudioSavePathInDevice =
+                           Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + "File" + Integer.toString(count)+
+                                  "AudioRecording.3gp";
+                    count++;
 
                     MediaRecorderReady();
 
@@ -112,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
                     description.setEnabled(true);
 
                     Toast.makeText(MainActivity.this, "Recording started",
-                            Toast.LENGTH_LONG).show();
+                            Toast.LENGTH_SHORT).show();
 
                } else {
                     requestPermission();
@@ -134,8 +139,8 @@ public class MainActivity extends AppCompatActivity {
                 post_button.setVisibility(View.VISIBLE);
                 cancel_button.setVisibility(View.VISIBLE);
 
-                Toast.makeText(MainActivity.this, "Recording Completed",
-                        Toast.LENGTH_LONG).show();
+//                Toast.makeText(MainActivity.this, "Recording Completed",
+//                        Toast.LENGTH_LONG).show();
             }
         });
 
@@ -158,9 +163,9 @@ public class MainActivity extends AppCompatActivity {
                                 desc = description.getText().toString();
 
                                 posts.add(0,new Post(
-                                        "Batman",
-                                        "Miami, Florida",
-                                        "https://avatarfiles.alphacoders.com/717/71761.jpg",
+                                        "James Harden",
+                                        "Pittsburgh, Pennsylvania",
+                                        R.drawable.jamesharden,
                                         desc,
                                         AudioSavePathInDevice,R.raw.sound1
                                 ));
@@ -243,45 +248,52 @@ public class MainActivity extends AppCompatActivity {
 
 
         posts.add(new Post(
-                "Batman",
-                "Miami, Florida",
-                "https://avatarfiles.alphacoders.com/717/71761.jpg",
-                "Hi, Check out my audio",
+                "Gorillaz",
+                "Pittsburgh, Pennsylvania",
+                R.drawable.gorillaz,
+                "Hi, here's a small message from me",
                 "",R.raw.sound1
         ));
 
         posts.add(new Post(
-                "Superman",
+                "James Harden",
                 "Pittsburgh, Pennsylvania",
-                "https://www.screengeek.net/wp-content/uploads/2017/04/superman-origin.jpg",
+                R.drawable.jamesharden,
                 "Hi, check this out",
                 "",R.raw.sound
         ));
 
         posts.add(new Post(
-                "Wonder Woman",
-                "Hoboken, New Jersey",
-                "https://avatarfiles.alphacoders.com/916/91630.jpg",
-                "Here the description of the post is displayed",
+                "Strawberry",
+                "Pittsburgh, Pennsylvania",
+                R.drawable.strawberry,
+                "I like strawberry a lot",
                 "",R.raw.sound
         ));
 
         posts.add(new Post(
-                "Flash",
+                "Pittsburgh-Penguin",
                 "Pittsburgh, Pennsylvania",
-                "https://avatarfiles.alphacoders.com/916/91671.jpg",
-                "Here the description of the post is displayed",
+                R.drawable.pittsburghpenguin,
+                "Hello all,",
                 "",R.raw.sound1
         ));
+
+//        posts.add(new Post(
+//                "Aquaman",
+//                "Pittsburgh, Pennsylvania",
+//                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRg7JcMPcUE_CpNH565NhO9RR5XWgcJlOwRYAmsF0jMsbDDRvzayw",
+//                "Here the description of the post is displayed",
+//                "",R.raw.sound1
+//        ));
 
         posts.add(new Post(
-                "Aquaman",
+                "Superman",
                 "Pittsburgh, Pennsylvania",
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRg7JcMPcUE_CpNH565NhO9RR5XWgcJlOwRYAmsF0jMsbDDRvzayw",
-                "Here the description of the post is displayed",
-                "",R.raw.sound1
+                R.drawable.superman,
+                "Hello friends, Here's a small message from me",
+                "",R.raw.sound
         ));
-
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
 

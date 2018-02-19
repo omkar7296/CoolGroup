@@ -8,14 +8,14 @@ public class Post {
 
     public String name;
     public String location;
-    public String profile_pic;
+    public int profile_pic;
     public String desc;
    // public String image;
     public boolean liked;
     public String audio_path;
     public int audio_id;
 
-    public Post(String name, String location, String profile_pic, String desc,String audio_path,int audio_id) {
+    public Post(String name, String location, int profile_pic, String desc,String audio_path,int audio_id) {
         this.name = name;
         this.location = location;
         this.profile_pic = profile_pic;
@@ -34,7 +34,7 @@ public class Post {
         return location;
     }
 
-    public String getProfile_pic() {
+    public int getProfile_pic() {
         return profile_pic;
     }
 

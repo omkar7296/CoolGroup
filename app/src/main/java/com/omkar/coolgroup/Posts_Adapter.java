@@ -134,10 +134,12 @@ public class Posts_Adapter extends RecyclerView.Adapter<Posts_Holder> {
 //            }
 //        });
 
-        Picasso.with(context).load(post.profile_pic)
-                .fit()
-                .centerCrop()
-                .into(holder.profile_pic);
+//        Picasso.with(context).load(post.profile_pic)
+//                .fit()
+//                .centerCrop()
+//                .into(holder.profile_pic);
+
+        holder.profile_pic.setImageResource(post.getProfile_pic());
 
         holder.play.setOnClickListener(new View.OnClickListener() {
             @Override
