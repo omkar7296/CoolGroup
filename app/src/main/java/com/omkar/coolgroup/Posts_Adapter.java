@@ -22,6 +22,8 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import static android.support.v4.content.ContextCompat.startActivity;
+
 /**
  * Created by omkar on 2/9/2018.
  */
@@ -140,6 +142,16 @@ public class Posts_Adapter extends RecyclerView.Adapter<Posts_Holder> {
 //                .into(holder.profile_pic);
 
         holder.profile_pic.setImageResource(post.getProfile_pic());
+
+        holder.profile_pic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context,Profile_pic.class);
+                intent.putExtra("Profile_pic_id",posts.get(position).getProfile_pic());
+                intent.putExtra("name",posts.get(position).getName());
+                context.startActivity(intent);
+            }
+        });
 
         holder.play.setOnClickListener(new View.OnClickListener() {
             @Override
