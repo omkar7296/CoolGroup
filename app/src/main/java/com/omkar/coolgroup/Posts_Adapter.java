@@ -332,3 +332,4 @@ public class Posts_Adapter extends RecyclerView.Adapter<Posts_Holder> {
 
 
 // Added a comment
+//Another test
